@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { Button, StyleSheet, Text, TextInput, View, FlatList } from 'react-native';
-import { FIRESTORE_DP } from '../../firebaseConfig';
+import { Button, StyleSheet, Text, TextInput, View, FlatList, TouchableOpacity } from 'react-native';
+import { FIRESTORE_DP } from '../firebaseConfig';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
@@ -46,10 +46,15 @@ export default function Main({navigation}) {
 
   const renderObavestenje = ({item}:any) => {
     return(
-      <View style={styles.obavestenje}>
+      <TouchableOpacity style={styles.obavestenje} activeOpacity={0.7} onPress={()=>{
+        navigation.navigate('Obavestenje', {
+          title: item.title,
+          body:item.body,
+        });
+      }}>
         <Text style={styles.obavestenjeTitle}>{item.title}</Text>
         <Text style={styles.obavestenjeBody}>{item.body}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 
@@ -57,7 +62,7 @@ export default function Main({navigation}) {
       <View style={styles.container}>
       <LinearGradient
         // Background Linear Gradient
-        colors={['#65C8FF','white']}
+        colors={['#ACE1FF','#e0f4ff']}        
         start={[0.3, 0]}
         end={[0.7,0.6]}
         style={styles.background}
@@ -113,7 +118,7 @@ export default function Main({navigation}) {
     form: {
       marginBottom: 20,
       alignItems:'center',
-      width: '80%'
+      width: '80%',
     },
     list: {
       paddingTop:10,
@@ -149,7 +154,10 @@ export default function Main({navigation}) {
       borderRadius: 10,
       borderColor: 'gray',
       borderWidth: 1,
-      shadowColor: 'gray',
+      // shadowColor: '#171717',
+      // shadowOffset: {width: 1, height: 1},
+      // shadowOpacity: 0.2,
+      // shadowRadius: 10,
     },
     obavestenjeTitle: {
       fontSize: 20,

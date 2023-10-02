@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { createStackNavigator} from '@react-navigation/stack'
-import Main from './app/screens/Main';
-import Settings from './app/screens/Settings';
+import Main from './app/Main';
+import Settings from './app/Settings';
+import Obavestenja from './app/Obavestenje';
 
 export default function App({navigation}) {
   
@@ -40,6 +41,21 @@ export default function App({navigation}) {
           component={Settings}
           options={{
             title: 'Settings',
+            headerStyle: {
+              backgroundColor: '#65C8FF',
+              height: 100,
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontSize: 22,
+              textTransform: 'uppercase',
+            },
+          }}
+          />
+          <Stack.Screen name='Obavestenje'
+          component={Obavestenja}
+          options={{
+            title: 'Obavestenje',
             headerStyle: {
               backgroundColor: '#65C8FF',
               height: 100,
